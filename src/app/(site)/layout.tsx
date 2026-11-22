@@ -1,3 +1,4 @@
+import { RevealObserver } from "@/components/reveal-observer";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { WhatsAppFloat } from "@/components/ui";
@@ -10,6 +11,7 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
       <main className="flex-1">{children}</main>
       <SiteFooter />
       <WhatsAppFloat />
+      <RevealObserver />
     </CartProvider>
   );
 }

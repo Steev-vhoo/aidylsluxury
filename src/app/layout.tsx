@@ -13,10 +13,17 @@ export const metadata: Metadata = {
     "Accra-based events and gifting brand: event planning and coordination, décor, balloons, rentals, styling, Christmas hampers, flowers and branded souvenirs.",
 };
 
+// Runs before first paint: enables scroll-reveal styles only when JS is running,
+// and shows everything anyway if the reveal script hasn't started within 2.5s.
+const motionBootstrap = `(function(d){d.classList.add('js');setTimeout(function(){if(!d.classList.contains('reveal-ready'))d.classList.add('reveal-off')},2500)})(document.documentElement)`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body className="flex min-h-screen flex-col">{children}</body>
+    <html lang="en" className={`${inter.variable} ${sora.variable}`} suppressHydrationWarning>
+      <body className="flex min-h-screen flex-col">
+        <script dangerouslySetInnerHTML={{ __html: motionBootstrap }} />
+        {children}
+      </body>
     </html>
   );
 }
