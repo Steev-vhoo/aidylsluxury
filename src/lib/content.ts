@@ -36,7 +36,14 @@ export const stats = [
   { num: "200+", label: "Gift packages delivered", note: "Personal and corporate orders" },
 ];
 
-export const clients = ["Leadavalley Academy", "Rotaract Club of Accra Technical University", "Opal Pixel Org"];
+export type Client = { name: string; logo?: { src: string; width: number; height: number; bg: string } };
+
+// Logos used with the client's permission (see content pack, section 12)
+export const clients: Client[] = [
+  { name: "Leadavalley Academy", logo: { src: "/clients/leadavalley.png", width: 171, height: 49, bg: "#FFFFFF" } },
+  { name: "Rotaract Club of Accra Technical University", logo: { src: "/clients/rotaract-atu.png", width: 236, height: 64, bg: "#D62F6B" } },
+  { name: "Opal Pixel Org" },
+];
 
 export const pillars = [
   { title: "Events", text: "Planning and coordination, set-ups and décor, balloon décor, event and floral backdrops, surprise planning." },
