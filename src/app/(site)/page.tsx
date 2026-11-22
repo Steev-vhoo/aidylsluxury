@@ -24,7 +24,6 @@ export default async function HomePage() {
         <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_20%_80%,rgba(212,175,55,.18),transparent_55%)]" />
 
         <div className="container-x flex flex-col gap-6 pt-28 pb-20 sm:pb-24">
-          <p className="eyebrow animate-fade text-gold-light">Events · Rentals · Styling · Gifting and Branding</p>
           <h1 className="max-w-3xl animate-rise text-5xl leading-[1.05] font-bold [animation-delay:150ms] sm:text-7xl">
             Elegance in <span className="text-gold-shimmer">Every Detail.</span>
           </h1>
