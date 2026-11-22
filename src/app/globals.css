@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-gold: #d4af37;
+  --color-gold-hover: #bf9a2c;
+  --color-gold-light: #f3d9a4;
+  --color-gold-text: #8a6020;
+  --color-ink: #1a1209;
+  --color-ink-2: #3a2a14;
+  --color-cream: #fdf6e8;
+  --color-cream-2: #f7ebd5;
+  --color-body: #2e2112;
+  --color-muted: #6b5a45;
+  --color-line: #eadfcc;
+  --color-line-2: #dccbae;
+  --color-ph: #e9dcc4;
+  --color-on-dark: #f5ecdd;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-sans text-body antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+  a {
+    @apply text-gold-text hover:text-ink;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold-text);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1200px] px-6;
+  }
+  .btn {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-gold px-6 text-sm font-semibold text-ink no-underline transition-colors hover:bg-gold-hover hover:text-ink disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-dark {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-ink px-6 text-sm font-semibold text-white no-underline transition-colors hover:bg-ink-2 hover:text-white;
+  }
+  .btn-outline {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border-[1.5px] border-gold bg-white px-6 text-sm font-semibold text-gold-text no-underline transition-colors hover:bg-cream hover:text-ink;
+  }
+  .tag {
+    @apply inline-flex self-start rounded-full border border-line-2 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.14em] text-[#4e3f2e] uppercase;
+  }
+  .eyebrow {
+    @apply text-[11px] font-semibold tracking-[0.22em] uppercase;
+  }
+  .field {
+    @apply min-h-11 w-full rounded-[10px] border border-line-2 bg-white px-3.5 text-[15px] text-body;
+  }
+  .label {
+    @apply flex flex-col gap-1.5 text-[13px] font-semibold;
+  }
+  .card {
+    @apply rounded-[20px] border border-line p-6 sm:p-7;
+  }
+  .ph {
+    @apply flex items-center justify-center bg-ph p-2 text-center text-[11px] font-semibold tracking-[0.08em] text-[#4e3f2e] uppercase;
+  }
 }
