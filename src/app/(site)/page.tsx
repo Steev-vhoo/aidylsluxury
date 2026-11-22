@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CheckIcon, StarIcon } from "@/components/icons";
 import { ProductCard } from "@/components/product-card";
@@ -34,9 +35,23 @@ export default async function HomePage() {
         <div className="container-x pb-28">
           <p className="mb-4 text-center text-sm text-gold-light">Trusted by</p>
           <ul className="grid gap-4 border-t border-white/15 pt-6 sm:grid-cols-3">
-            {clients.map((c) => (
-              <li key={c} className="flex min-h-11 items-center justify-center rounded-md border border-dashed border-gold/50 px-3 text-center text-sm text-on-dark">{c}</li>
-            ))}
+            {clients.map((c) =>
+              c.logo ? (
+                <li key={c.name} className="flex h-20 items-center justify-center rounded-xl px-4" style={{ background: c.logo.bg }}>
+                  <Image
+                    src={c.logo.src}
+                    alt={c.name}
+                    width={c.logo.width}
+                    height={c.logo.height}
+                    style={{ height: Math.min(c.logo.height, 40), width: "auto" }}
+                  />
+                </li>
+              ) : (
+                <li key={c.name} className="flex h-20 items-center justify-center rounded-xl border border-dashed border-gold/50 px-4 text-center font-display font-semibold text-on-dark">
+                  {c.name}
+                </li>
+              ),
+            )}
           </ul>
         </div>
       </section>
