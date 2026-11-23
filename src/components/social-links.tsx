@@ -65,11 +65,7 @@ export function SocialLinks({ tone = "onGold", size = 44, className = "", includ
             className={`relative flex items-center justify-center rounded-full no-underline transition-all duration-500 hover:-translate-y-1 ${tones[tone]}`}
           >
             <SocialIcon platform={s.platform} size={Math.round(size * 0.46)} />
-            {s.badge && (
-              <span aria-hidden className="absolute -right-1 -bottom-1 rounded-full bg-gold px-1 text-[8px] leading-3.5 font-bold tracking-wide text-ink uppercase ring-2 ring-white/80">
-                {s.badge}
-              </span>
-            )}
+            {s.badge && <span aria-hidden className="absolute -top-0.5 -right-0.5 size-3 rounded-full bg-gold ring-2 ring-ink" />}
           </a>
         </li>
       ))}

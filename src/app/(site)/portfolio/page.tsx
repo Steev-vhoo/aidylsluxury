@@ -5,7 +5,7 @@ import { CtaBand, PageHero } from "@/components/ui";
 import { portfolioAlbums } from "@/lib/content";
 import { getGalleryPhotos } from "@/lib/data";
 
-export const metadata: Metadata = { title: "Portfolio" };
+export const metadata: Metadata = { title: "Portfolio", description: "Corporate events, weddings, NGO launches and private celebrations planned and styled by Aidyl’s Luxury." };
 
 export default async function PortfolioPage() {
   const photos = await getGalleryPhotos();

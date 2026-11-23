@@ -67,14 +67,15 @@ export function TestimonialCarousel({ items, interval = 6500 }: { items: T[]; in
     >
       <div ref={track} className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((x, i) => (
-          <figure
+          <div
             key={x.name}
             data-slide
             role="group"
             aria-roledescription="slide"
             aria-label={`${i + 1} of ${items.length}`}
-            className="flex w-full shrink-0 snap-start flex-col justify-between gap-5 rounded-2xl border border-line bg-white p-7 text-left md:w-[calc(50%-10px)]"
+            className="w-full shrink-0 snap-start md:w-[calc(50%-10px)]"
           >
+          <figure className="flex h-full flex-col justify-between gap-5 rounded-2xl border border-line bg-white p-7 text-left">
             <div className="flex flex-col gap-3">
               <span aria-hidden className="font-display text-4xl leading-none text-gold">“</span>
               <blockquote className="text-[15px] leading-relaxed italic">{x.quote}</blockquote>
@@ -84,6 +85,7 @@ export function TestimonialCarousel({ items, interval = 6500 }: { items: T[]; in
               <span><strong>{x.name}</strong><span className="block text-muted">{x.context}</span></span>
             </figcaption>
           </figure>
+          </div>
         ))}
       </div>
       <div className="flex flex-wrap items-center justify-between gap-4">

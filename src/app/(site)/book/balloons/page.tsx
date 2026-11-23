@@ -4,7 +4,7 @@ import { BalloonForm } from "@/components/balloon-form";
 import { PageHero, Photo } from "@/components/ui";
 import { balloonNotes } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Book Balloon Décor" };
+export const metadata: Metadata = { title: "Book Balloon Décor", description: "Book backdrop garlands from 7 ft to 24 ft, balloon arches and entrance installations in your colours, anywhere in Accra." };
 
 export default function BalloonsPage() {
   return (

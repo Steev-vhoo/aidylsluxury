@@ -5,7 +5,7 @@ import { PageHero } from "@/components/ui";
 import { getRentalItems } from "@/lib/data";
 import { paystackEnabled } from "@/lib/paystack";
 
-export const metadata: Metadata = { title: "Book Rentals" };
+export const metadata: Metadata = { title: "Book Rentals", description: "Rent tents, canopies, chairs, tables, tableware and décor online. Choose your dates, pick up or delivery, and pay securely with Paystack." };
 
 export default async function RentalsPage() {
   const items = await getRentalItems();

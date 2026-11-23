@@ -1,10 +1,10 @@
 import { media } from "@/lib/media";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CtaBand, DraftBadge, PageHero, Photo, SectionTitle } from "@/components/ui";
+import { CtaBand, PageHero, Photo, SectionTitle } from "@/components/ui";
 import { about, howWeWork, site, vendors } from "@/lib/content";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = { title: "About", description: "Meet Aidyl’s Luxury, an Accra events and gifting brand founded by PMP-certified project manager Lydia Anokye. Our story, mission and trusted partners." };
 
 export default function AboutPage() {
   return (
@@ -21,7 +21,7 @@ export default function AboutPage() {
           <div aria-hidden className="absolute top-[46%] -left-[20%] h-16 w-[140%] -rotate-45 bg-gold/20 mix-blend-screen" />
         </div>
         <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2.5"><p className="tag">Our story</p><DraftBadge /></div>
+          <p className="tag">Our story</p>
           <h2 className="text-3xl leading-tight font-bold">Born from a passion for creating beautiful moments</h2>
           {about.story.map((p) => <p key={p.slice(0, 20)} data-reveal className="leading-relaxed text-muted">{p}</p>)}
           <span className="font-display font-semibold">Lydia Anokye, Founder</span>
@@ -64,7 +64,7 @@ export default function AboutPage() {
       <section className="container-x flex flex-wrap items-center gap-12 py-20">
         <Photo alt="Lydia Anokye, formal portrait" className="h-96 flex-[0_1_320px] rounded-3xl" />
         <div className="flex flex-[1_1_420px] flex-col gap-4">
-          <div className="flex items-center gap-2.5"><p className="tag">Leadership</p><DraftBadge /></div>
+          <p className="tag">Leadership</p>
           <h2 className="text-3xl font-bold">Lydia Anokye</h2>
           <span className="font-semibold text-gold-text">Creative Director and Founder · PMP®</span>
           <p className="leading-relaxed text-muted">{about.bio}</p>

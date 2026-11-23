@@ -1,5 +1,6 @@
 import "server-only";
 import { createHmac, timingSafeEqual } from "node:crypto";
+import { site } from "./content";
 
 const API = "https://api.paystack.co";
 
@@ -49,5 +50,5 @@ export function newReference(prefix: "AL" | "RN") {
 }
 
 export function siteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+  return site.url;
 }

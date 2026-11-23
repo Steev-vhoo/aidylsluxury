@@ -7,7 +7,7 @@ import { media } from "@/lib/media";
 import { PageHero } from "@/components/ui";
 import { bookingSteps, site } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Book an Event" };
+export const metadata: Metadata = { title: "Book an Event", description: "Tell us about your corporate or personal event. We reply within 24 hours with an invoice and event summary; a 50% deposit reserves your date." };
 
 export default function BookPage() {
   return (

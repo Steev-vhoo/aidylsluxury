@@ -4,7 +4,7 @@ import { media } from "@/lib/media";
 import { PageHero, Photo, SectionTitle } from "@/components/ui";
 import { occasions, rentalGroups, services, site, vendors } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Services" };
+export const metadata: Metadata = { title: "Services", description: "Event planning and coordination, décor, balloons and backdrops, furniture and equipment rentals, styling, gifting and branding, and project management consulting in Accra." };
 
 const steps = [
   { t: "Tell us your plans", d: "Send a booking request or chat with us on WhatsApp." },

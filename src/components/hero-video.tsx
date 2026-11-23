@@ -39,7 +39,7 @@ export function HeroVideo() {
         loop
         playsInline
         preload="metadata"
-        poster="/media/hero-poster.jpg"
+        poster="/media/hero-poster.webp"
         aria-hidden
       >
         <source src="/media/hero-720.mp4" type="video/mp4" media="(max-width: 767px)" />

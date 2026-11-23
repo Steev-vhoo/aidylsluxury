@@ -1,9 +1,11 @@
 import Image from "next/image";
+import { preload } from "react-dom";
 import Link from "next/link";
 import { ClientMarquee } from "@/components/client-marquee";
 import { HeroVideo } from "@/components/hero-video";
 import { CheckIcon, StarIcon } from "@/components/icons";
 import { ProductCard } from "@/components/product-card";
+import { SocialLinks } from "@/components/social-links";
 import { TestimonialCarousel } from "@/components/testimonial-carousel";
 import { delay } from "@/lib/motion";
 import { Photo, SectionTitle } from "@/components/ui";
@@ -15,6 +17,8 @@ export default async function HomePage() {
   const [featured, photos] = await Promise.all([getFeaturedProducts(), getGalleryPhotos()]);
   const recent = photos.filter((p) => p.featured).concat(photos.filter((p) => !p.featured)).slice(0, 6);
   const t = testimonials[0];
+  // The hero still is the largest paint: fetch it straight away
+  preload(media.heroVideo.poster, { as: "image", fetchPriority: "high" });
 
   return (
     <>
@@ -62,7 +66,7 @@ export default async function HomePage() {
               className={`lift flex flex-col gap-3.5 rounded-2xl p-7 no-underline shadow-[0_16px_40px_rgba(26,18,9,.12)] ${i === 3 ? "bg-gold text-ink hover:text-ink" : "bg-white text-body hover:text-body"}`}
             >
               <span className={`flex size-13 items-center justify-center rounded-xl ${i === 3 ? "bg-white" : "bg-cream-2"} text-gold-text`}><StarIcon size={24} /></span>
-              <h3 className="text-lg font-semibold">{p.title}</h3>
+              <h2 className="text-lg font-semibold">{p.title}</h2>
               <p className="text-sm leading-relaxed">{p.text}</p>
             </Link>
           ))}
@@ -142,15 +146,24 @@ export default async function HomePage() {
       <section className="bg-cream py-24">
         <div className="container-x flex flex-col gap-7">
           <SectionTitle tag="Portfolio" title="Recent Events We Delivered" />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {(recent.length ? recent : Array.from({ length: 6 }, () => null)).map((p, i) => (
-              <figure key={p?.id ?? i} data-reveal style={delay(i % 3)} className="flex flex-col gap-3">
-                <Photo src={p?.url} alt={p?.caption || "Event photo"} label="Event photo" className="h-60 rounded-2xl" />
-                {p?.caption && <figcaption className="font-display font-semibold">{p.caption}</figcaption>}
-              </figure>
-            ))}
-          </div>
-          <Link data-reveal href="/portfolio" className="btn self-center">View Full Portfolio →</Link>
+          {recent.length ? (
+            <>
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {recent.map((p, i) => (
+                  <figure key={p.id} data-reveal style={delay(i % 3)} className="flex flex-col gap-3">
+                    <Photo src={p.url} alt={p.caption || `${p.album} event`} className="h-60 rounded-2xl" />
+                    {p.caption && <figcaption className="font-display font-semibold">{p.caption}</figcaption>}
+                  </figure>
+                ))}
+              </div>
+              <Link data-reveal href="/portfolio" className="btn self-center">View Full Portfolio →</Link>
+            </>
+          ) : (
+            <div data-reveal className="flex flex-col items-center gap-5 rounded-3xl bg-white px-6 py-14 text-center">
+              <p className="max-w-xl leading-relaxed text-muted">Our latest set-ups, balloon installations and gift packages are posted on Instagram and TikTok first. Follow along for fresh inspiration.</p>
+              <SocialLinks tone="onLight" size={48} includeWhatsApp={false} className="justify-center" />
+            </div>
+          )}
         </div>
       </section>
 

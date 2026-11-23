@@ -1,26 +1,11 @@
 import Link from "next/link";
 import { site } from "@/lib/content";
 import { BrandLogoFull } from "./brand-logo";
-import { MailIcon, PhoneIcon, PinIcon } from "./icons";
 import { SocialLinks } from "./social-links";
 
 export function SiteFooter() {
-  const contacts = [
-    { icon: <PhoneIcon />, title: "Call or WhatsApp", value: `${site.phones.join(" / ")} · WhatsApp ${site.whatsapp}` },
-    { icon: <PinIcon />, title: "Visit Us", value: site.address },
-    { icon: <MailIcon />, title: "Email Us", value: site.email },
-  ];
   return (
     <footer className="bg-gold text-ink">
-      <div className="container-x grid gap-8 border-b border-ink/20 py-12 text-center sm:grid-cols-3">
-        {contacts.map((c) => (
-          <div key={c.title} className="flex flex-col items-center gap-2.5">
-            <span className="flex size-13 items-center justify-center rounded-full bg-ink text-gold">{c.icon}</span>
-            <strong className="text-sm">{c.title}</strong>
-            <span className="text-sm">{c.value}</span>
-          </div>
-        ))}
-      </div>
       <div className="container-x grid gap-9 py-11 text-sm sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-3">
           <BrandLogoFull tone="ink" width={120} />

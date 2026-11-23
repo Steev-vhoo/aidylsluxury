@@ -36,6 +36,12 @@
   a {
     @apply text-gold-text hover:text-ink;
   }
+  /* Links inside running text are underlined so they don't rely on colour alone */
+  :where(p, li, dd, span, label) > a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
   :focus-visible {
     outline: 2px solid var(--color-gold-text);
     outline-offset: 2px;

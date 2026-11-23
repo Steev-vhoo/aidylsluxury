@@ -10,7 +10,7 @@ export function BrandLogo({ tone = "ink", height = 48, wordmark = true, classNam
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <Image src={`/brand/logo-mark-${tone}.png`} alt="" width={markW} height={height} priority style={{ height, width: markW }} />
-      {wordmark && <Image src={`/brand/logo-wordmark-${tone}.png`} alt="" width={wordW} height={wordH} priority style={{ height: wordH, width: wordW }} className="hidden sm:block" />}
+      {wordmark && <Image src={`/brand/logo-wordmark-${tone}.png`} alt="" width={wordW} height={wordH} style={{ height: wordH, width: wordW }} className="hidden sm:block" />}
       <span className="sr-only">Aidyl&apos;s Luxury</span>
     </span>
   );

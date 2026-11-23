@@ -10,6 +10,7 @@ export type Social = {
 
 export const site = {
   name: "Aidyl's Luxury",
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.aidylsluxury.com").replace(/\/$/, ""),
   legalName: "Aidyl's Luxury Enterprise",
   tagline: "Elegance in Every Detail",
   phones: ["020 837 6516", "059 659 2229"],

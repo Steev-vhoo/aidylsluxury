@@ -31,9 +31,15 @@ export function Photo({ src, alt, label, className = "", sizes = "(min-width: 10
       </div>
     );
   }
+  void label;
   return (
-    <div className={`ph ${className}`} role="img" aria-label={alt} data-reveal={reveal ? "zoom" : undefined}>
-      {label ?? alt}
+    <div
+      className={`relative flex items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_30%_20%,#fdf6e8,#f1e2c4_70%)] ${className}`}
+      role="img"
+      aria-label={alt}
+      data-reveal={reveal ? "zoom" : undefined}
+    >
+      <Image src="/brand/logo-mark-gold.png" alt="" width={449} height={396} className="h-auto w-[28%] max-w-28 min-w-10 opacity-25" />
     </div>
   );
 }
@@ -73,6 +79,3 @@ export function CtaBand({ title, href = "/book", label = "Request a Quote →" }
   );
 }
 
-export function DraftBadge() {
-  return <span className="inline-flex min-h-[22px] items-center rounded-full bg-amber-100 px-2 text-[11px] font-bold tracking-wide text-amber-900 uppercase">Draft</span>;
-}

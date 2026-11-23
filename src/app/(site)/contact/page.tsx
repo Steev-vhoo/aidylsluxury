@@ -6,7 +6,7 @@ import { SocialLinks } from "@/components/social-links";
 import { PageHero } from "@/components/ui";
 import { faqs, site } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = { title: "Contact", description: "Call 020 837 6516, WhatsApp +233 20 837 6516 or email aidylenterprise@gmail.com. Open Monday to Sunday, 8am to 7pm, in Tantra, Accra." };
 
 export default function ContactPage() {
   const cards = [
