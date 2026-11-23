@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import { BrandLogo } from "@/components/brand-logo";
 import { logout } from "@/lib/actions/admin";
 import { requireAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -39,7 +40,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="flex min-h-screen flex-wrap bg-cream">
       <aside className="flex max-w-full flex-[1_1_240px] flex-col gap-1.5 bg-ink px-4 py-6 text-white">
         <Link href="/admin" className="mb-5 flex items-center gap-2.5 px-1.5 text-white no-underline hover:text-white">
-          <span className="flex size-9.5 items-center justify-center rounded-[10px] bg-gold font-display font-bold text-ink">AL</span>
+          <BrandLogo tone="gold" height={38} wordmark={false} />
           <span className="flex flex-col"><strong className="font-display">Aidyl&apos;s Luxury</strong><span className="text-xs text-gold-light">Admin</span></span>
         </Link>
         <nav aria-label="Admin" className="flex flex-col gap-1">

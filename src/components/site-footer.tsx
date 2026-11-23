@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { site } from "@/lib/content";
+import { BrandLogoFull } from "./brand-logo";
 import { MailIcon, PhoneIcon, PinIcon } from "./icons";
+import { SocialLinks } from "./social-links";
 
 export function SiteFooter() {
   const contacts = [
@@ -21,7 +23,7 @@ export function SiteFooter() {
       </div>
       <div className="container-x grid gap-9 py-11 text-sm sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-3">
-          <span className="font-display text-2xl font-bold">{site.name}</span>
+          <BrandLogoFull tone="ink" width={120} />
           <span className="eyebrow text-ink-2">Elegance in every detail</span>
           <span className="leading-relaxed">Events, rentals, styling, gifting and branding in Accra, Ghana.</span>
         </div>
@@ -39,9 +41,8 @@ export function SiteFooter() {
         </nav>
         <div className="flex flex-col gap-2.5">
           <strong>Follow Us</strong>
-          {site.socials.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="text-ink no-underline hover:text-ink-2 hover:underline">{s.label}</a>
-          ))}
+          <SocialLinks tone="onGold" />
+          <span className="text-xs leading-relaxed text-ink-2">@aidyls_luxury · @events_by_aidyls_luxury</span>
         </div>
       </div>
       <div className="container-x border-t border-ink/20 py-5 text-xs text-ink-2">© 2026 {site.name}. Open {site.hours}.</div>
