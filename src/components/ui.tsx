@@ -3,7 +3,7 @@ import Link from "next/link";
 import { site } from "@/lib/content";
 import { ChatIcon } from "./icons";
 
-export function PageHero({ crumb, title, intro, children, image }: { crumb: string; title: string; intro?: React.ReactNode; children?: React.ReactNode; image?: { src: string; alt: string } }) {
+export function PageHero({ title, intro, children, image }: { title: string; intro?: React.ReactNode; children?: React.ReactNode; image?: { src: string; alt: string } }) {
   return (
     <section className="relative isolate overflow-hidden bg-ink text-white">
       {image && (
@@ -13,8 +13,7 @@ export function PageHero({ crumb, title, intro, children, image }: { crumb: stri
         </>
       )}
       <div className={`container-x flex flex-col gap-3 ${image ? "py-20 sm:py-28" : "py-14 sm:py-16"}`}>
-        <span className="animate-fade text-[13px] text-gold-light">{crumb}</span>
-        <h1 className="animate-rise text-4xl font-bold [animation-delay:120ms] sm:text-5xl">{title}</h1>
+        <h1 className="animate-rise text-4xl font-bold sm:text-5xl">{title}</h1>
         <span aria-hidden className="block h-px w-24 animate-draw bg-gold [animation-delay:500ms]" />
         {intro && <div className="max-w-2xl animate-rise text-[17px] leading-relaxed text-on-dark [animation-delay:260ms]">{intro}</div>}
         {children && <div className="animate-rise [animation-delay:380ms]">{children}</div>}

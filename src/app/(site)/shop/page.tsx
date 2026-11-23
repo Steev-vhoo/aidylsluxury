@@ -17,7 +17,7 @@ export default async function ShopPage() {
   const products = await getLiveProducts();
   return (
     <>
-      <PageHero crumb="Home / Shop" title="Shop Gifts, Flowers and Hampers" intro="Pay in full with Mobile Money or card. Delivery in Accra and beyond." />
+      <PageHero title="Shop Gifts, Flowers and Hampers" intro="Pay in full with Mobile Money or card. Delivery in Accra and beyond." />
       <section className="container-x py-12">
         <ShopGrid products={products} categories={shopCategories} />
       </section>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ProductCard } from "@/components/product-card";
@@ -25,9 +24,6 @@ async function ProductContent({ params }: { params: Promise<{ slug: string }> })
   return (
     <>
       <section className="container-x flex flex-col gap-7 py-8 pb-20">
-        <nav aria-label="Breadcrumb" className="text-[13px] text-muted">
-          <Link href="/">Home</Link> / <Link href="/shop">Shop</Link> / {product.category} / {product.name}
-        </nav>
         <ProductDetail product={product} />
       </section>
       {related.length > 0 && (

@@ -13,7 +13,7 @@ export default function BookPage() {
   return (
     <>
       <PageHero
-        image={media.goldTable} crumb="Home / Book an Event"
+        image={media.goldTable}
         title="Tell Us About Your Event"
         intro={<>Share a few details and we’ll reply within 24 hours. Booking balloons? Use the <Link href="/book/balloons" className="text-gold-light underline hover:text-white">balloon booking form</Link>.</>}
       />

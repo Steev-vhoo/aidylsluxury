@@ -16,7 +16,6 @@ export default function CartPage() {
 
   return (
     <section className="container-x flex flex-col gap-6 py-10 pb-20">
-      <nav aria-label="Breadcrumb" className="text-[13px] text-muted"><Link href="/">Home</Link> / <Link href="/shop">Shop</Link> / Cart</nav>
       <div className="flex flex-wrap items-baseline justify-between gap-3">
         <h1 className="text-4xl font-bold">Your Cart</h1>
         <Link href="/shop" className="font-semibold">← Continue shopping</Link>

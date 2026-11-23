@@ -10,7 +10,6 @@ export default function BalloonsPage() {
   return (
     <>
       <PageHero
-        crumb="Home / Services / Balloon Décor"
         title="Book Balloon Décor"
         intro="Backdrop garlands, arches, entrance installations and balloon walls in your colours. A 50% non-refundable deposit reserves your date; the balance is due one week before the event."
       >

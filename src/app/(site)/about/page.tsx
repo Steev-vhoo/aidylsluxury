@@ -10,7 +10,6 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        crumb="Home / About"
         image={media.candleTable}
         title={`About ${site.name}`}
         intro="A creative events and gifting brand specialising in event coordination, elegant décor, curated gift packages and branded souvenirs for all occasions."

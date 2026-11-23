@@ -17,7 +17,7 @@ export default function ContactPage() {
   ];
   return (
     <>
-      <PageHero image={media.candleTable} crumb="Home / Contact" title="Get in Touch" intro="Questions about an event, an order or a partnership? We’d love to hear from you." />
+      <PageHero image={media.candleTable} title="Get in Touch" intro="Questions about an event, an order or a partnership? We’d love to hear from you." />
       <section className="container-x relative -mt-10">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((c) => (
