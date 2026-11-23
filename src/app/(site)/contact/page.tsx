@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { ChatIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import { media } from "@/lib/media";
+import { SocialLinks } from "@/components/social-links";
 import { PageHero } from "@/components/ui";
 import { faqs, site } from "@/lib/content";
 
-export const metadata: Metadata = { title: "Contact" };
+export const metadata: Metadata = { title: "Contact", description: "Call 020 837 6516, WhatsApp +233 20 837 6516 or email aidylenterprise@gmail.com. Open Monday to Sunday, 8am to 7pm, in Tantra, Accra." };
 
 export default function ContactPage() {
   const cards = [
@@ -15,11 +17,11 @@ export default function ContactPage() {
   ];
   return (
     <>
-      <PageHero crumb="Home / Contact" title="Get in Touch" intro="Questions about an event, an order or a partnership? We’d love to hear from you." />
+      <PageHero image={media.candleTable} title="Get in Touch" intro="Questions about an event, an order or a partnership? We’d love to hear from you." />
       <section className="container-x relative -mt-10">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((c) => (
-            <a key={c.title} href={c.href} className={`flex flex-col gap-2.5 rounded-2xl p-6 no-underline shadow-[0_16px_40px_rgba(26,18,9,.12)] ${c.hot ? "bg-gold text-ink hover:text-ink" : "bg-white text-body hover:text-body"}`}>
+            <a key={c.title} href={c.href} data-reveal className={`lift flex flex-col gap-2.5 rounded-2xl p-6 no-underline shadow-[0_16px_40px_rgba(26,18,9,.12)] ${c.hot ? "bg-gold text-ink hover:text-ink" : "bg-white text-body hover:text-body"}`}>
               <span className={`flex size-12 items-center justify-center rounded-xl ${c.hot ? "bg-white" : "bg-cream-2"} text-gold-text`}>{c.icon}</span>
               <strong className="font-display">{c.title}</strong>
               <span className="text-sm">{c.value}</span>
@@ -42,7 +44,8 @@ export default function ContactPage() {
             <div className="flex flex-col gap-1.5 rounded-2xl bg-cream p-5 text-sm"><strong className="font-display">Opening hours</strong><span>Monday to Sunday</span><span>8am to 7pm</span></div>
             <div className="flex flex-col gap-1.5 rounded-2xl bg-cream p-5 text-sm">
               <strong className="font-display">Follow us</strong>
-              {site.socials.map((s) => <a key={s.label} href={s.href} target="_blank" rel="noreferrer">{s.label}</a>)}
+              <SocialLinks tone="onLight" size={42} includeWhatsApp={false} />
+              <span className="text-xs text-muted">@aidyls_luxury · @events_by_aidyls_luxury</span>
             </div>
           </div>
         </div>
@@ -52,7 +55,7 @@ export default function ContactPage() {
         <div className="mx-auto flex max-w-[860px] flex-col gap-3 px-6">
           <h2 className="mb-3 text-center text-3xl font-bold">Frequently Asked Questions</h2>
           {faqs.map((f) => (
-            <details key={f.q} className="group rounded-2xl bg-white px-5.5">
+            <details key={f.q} data-reveal className="group rounded-2xl bg-white px-5.5">
               <summary className="flex min-h-14 cursor-pointer items-center justify-between gap-4 font-semibold">
                 {f.q}<span aria-hidden className="text-gold-text transition-transform group-open:rotate-45">+</span>
               </summary>

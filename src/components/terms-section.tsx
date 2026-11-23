@@ -1,5 +1,4 @@
 import { terms } from "@/lib/content";
-import { DraftBadge } from "./ui";
 
 export function TermsSection() {
   return (
@@ -7,7 +6,6 @@ export function TermsSection() {
       <div className="container-x flex flex-col gap-6">
         <div className="flex flex-wrap items-baseline gap-3">
           <h2 className="text-3xl font-bold">Booking, Payment and Cancellation Terms</h2>
-          <DraftBadge />
         </div>
         <div className="grid gap-5 md:grid-cols-3">
           {terms.map((t) => (

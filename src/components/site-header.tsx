@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { nav, site } from "@/lib/content";
 import { useCart } from "@/lib/cart";
+import { BrandLogo } from "./brand-logo";
 import { BagIcon, CloseIcon, MenuIcon } from "./icons";
+import { SocialLinks } from "./social-links";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -16,11 +18,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-gold text-ink shadow-[0_1px_0_rgba(26,18,9,.15)]">
       <div className="container-x flex min-h-[72px] items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5 text-ink no-underline hover:text-ink" onClick={() => setOpen(false)}>
-          <span className="flex size-11 items-center justify-center rounded-[10px] bg-ink font-display text-lg font-bold text-gold" aria-hidden>
-            AL
-          </span>
-          <span className="font-display text-xl font-bold">{site.name}</span>
+        <Link href="/" aria-label={`${site.name} home`} className="flex items-center text-ink no-underline transition-opacity hover:opacity-80" onClick={() => setOpen(false)}>
+          <BrandLogo tone="ink" height={46} />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
@@ -69,6 +68,7 @@ export function SiteHeader() {
             <Link href="/book" onClick={() => setOpen(false)} className="btn-dark my-3">
               Get a Quote →
             </Link>
+            <SocialLinks tone="onGold" size={40} className="pb-4" />
           </div>
         </nav>
       )}

@@ -4,7 +4,7 @@ import { PageHero } from "@/components/ui";
 import { getLiveProducts } from "@/lib/data";
 import { shopCategories } from "@/lib/seed-catalog";
 
-export const metadata: Metadata = { title: "Shop" };
+export const metadata: Metadata = { title: "Shop", description: "Christmas hampers, fresh and faux roses, gifts and souvenirs. Pay with Mobile Money or card; delivery in Accra and beyond." };
 
 const perks = [
   { t: "Mobile Money and card", d: "Secure checkout via Paystack" },
@@ -17,7 +17,7 @@ export default async function ShopPage() {
   const products = await getLiveProducts();
   return (
     <>
-      <PageHero crumb="Home / Shop" title="Shop Gifts, Flowers and Hampers" intro="Pay in full with Mobile Money or card. Delivery in Accra and beyond." />
+      <PageHero title="Shop Gifts, Flowers and Hampers" intro="Pay in full with Mobile Money or card. Delivery in Accra and beyond." />
       <section className="container-x py-12">
         <ShopGrid products={products} categories={shopCategories} />
       </section>

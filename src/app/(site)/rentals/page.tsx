@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import { RentalBooking } from "@/components/rental-booking";
+import { media } from "@/lib/media";
 import { PageHero } from "@/components/ui";
 import { getRentalItems } from "@/lib/data";
 import { paystackEnabled } from "@/lib/paystack";
 
-export const metadata: Metadata = { title: "Book Rentals" };
+export const metadata: Metadata = { title: "Book Rentals", description: "Rent tents, canopies, chairs, tables, tableware and décor online. Choose your dates, pick up or delivery, and pay securely with Paystack." };
 
 export default async function RentalsPage() {
   const items = await getRentalItems();
   return (
     <>
       <PageHero
-        crumb="Home / Services / Rentals"
+        image={media.garden}
         title="Book Rentals"
         intro="Tents, seating, tables, tableware and décor. Choose your items and dates, then pay in full online. Your dates are reserved for you and not offered to other clients."
       />

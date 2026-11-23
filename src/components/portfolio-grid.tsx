@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { CatalogPhoto } from "@/lib/data";
+import { SocialLinks } from "./social-links";
 import { Photo } from "./ui";
 
 export function PortfolioGrid({ photos, albums }: { photos: CatalogPhoto[]; albums: string[] }) {
@@ -10,7 +11,7 @@ export function PortfolioGrid({ photos, albums }: { photos: CatalogPhoto[]; albu
 
   return (
     <div className="flex flex-col gap-6">
-      <div role="group" aria-label="Filter by event type" className="flex flex-wrap justify-center gap-2">
+      {photos.length > 0 && <div role="group" aria-label="Filter by event type" className="flex flex-wrap justify-center gap-2">
         {["All", ...albums].map((a) => (
           <button
             key={a}
@@ -22,9 +23,12 @@ export function PortfolioGrid({ photos, albums }: { photos: CatalogPhoto[]; albu
             {a}
           </button>
         ))}
-      </div>
+      </div>}
       {photos.length === 0 ? (
-        <p className="rounded-2xl bg-white p-10 text-center text-muted">Our portfolio photos are coming soon. Follow @aidyls_luxury on Instagram to see our latest work.</p>
+        <div className="flex flex-col items-center gap-5 rounded-3xl bg-white px-6 py-14 text-center">
+          <p className="max-w-xl leading-relaxed text-muted">Our full gallery is on its way. In the meantime, see our latest set-ups and gift packages on Instagram and TikTok.</p>
+          <SocialLinks tone="onLight" size={48} includeWhatsApp={false} className="justify-center" />
+        </div>
       ) : shown.length === 0 ? (
         <p className="rounded-2xl bg-white p-10 text-center text-muted">No photos in this album yet.</p>
       ) : (
