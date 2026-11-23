@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ClientMarquee } from "@/components/client-marquee";
 import { HeroVideo } from "@/components/hero-video";
 import { CheckIcon, StarIcon } from "@/components/icons";
 import { ProductCard } from "@/components/product-card";
+import { TestimonialCarousel } from "@/components/testimonial-carousel";
 import { delay } from "@/lib/motion";
 import { Photo, SectionTitle } from "@/components/ui";
 import { clients, occasions, pillars, services, site, stats, testimonials } from "@/lib/content";
@@ -41,20 +43,10 @@ export default async function HomePage() {
       {/* Trusted by */}
       <section className="bg-ink text-white">
         <div className="container-x pt-4 pb-28">
-          <p data-reveal className="mb-4 text-center text-sm tracking-wide text-gold-light">Trusted by</p>
-          <ul className="grid gap-4 border-t border-white/15 pt-6 sm:grid-cols-3">
-            {clients.map((c, i) =>
-              c.logo ? (
-                <li key={c.name} data-reveal style={{ ...delay(i), background: c.logo.bg }} className="flex h-20 items-center justify-center rounded-xl px-4">
-                  <Image src={c.logo.src} alt={c.name} width={c.logo.width} height={c.logo.height} style={{ height: Math.min(c.logo.height, 40), width: "auto" }} />
-                </li>
-              ) : (
-                <li key={c.name} data-reveal style={delay(i)} className="flex h-20 items-center justify-center rounded-xl border border-dashed border-gold/50 px-4 text-center font-display font-semibold text-on-dark">
-                  {c.name}
-                </li>
-              ),
-            )}
-          </ul>
+          <p data-reveal className="mb-6 text-center text-sm tracking-wide text-gold-light">Trusted by</p>
+          <div data-reveal className="border-t border-white/15 pt-6">
+            <ClientMarquee clients={clients} />
+          </div>
         </div>
       </section>
 
@@ -193,16 +185,17 @@ export default async function HomePage() {
       <section className="container-x flex flex-col items-center gap-5 py-24 text-center">
         <p data-reveal className="tag self-center">Testimonials</p>
         <span data-reveal aria-hidden className="font-display text-6xl leading-none text-gold">“</span>
-        <blockquote data-reveal style={delay(1)} className="-mt-6 max-w-3xl font-display text-xl leading-relaxed font-semibold sm:text-2xl">{t.quote}</blockquote>
-        <span data-reveal style={delay(2)} className="font-semibold">{t.name}</span>
-        <span className="-mt-3 text-sm text-muted">{t.context}</span>
-        <div className="mt-6 grid w-full gap-5 text-left md:grid-cols-3">
-          {testimonials.slice(1).map((x, i) => (
-            <figure key={x.name} data-reveal style={delay(i)} className="lift flex flex-col gap-3 rounded-2xl border border-line p-6">
-              <blockquote className="text-[15px] leading-relaxed italic">“{x.quote}”</blockquote>
-              <figcaption className="text-sm"><strong>{x.name}</strong><span className="block text-muted">{x.context}</span></figcaption>
-            </figure>
+        <blockquote data-reveal="words" className="-mt-6 max-w-3xl font-display text-xl leading-relaxed font-semibold sm:text-2xl">
+          {t.quote.split(" ").map((w, i) => (
+            <span key={i}>
+              <span className="w" style={{ "--i": i } as React.CSSProperties}>{w}</span>{" "}
+            </span>
           ))}
+        </blockquote>
+        <span data-reveal style={delay(6)} className="font-semibold">{t.name}</span>
+        <span data-reveal style={delay(7)} className="-mt-3 text-sm text-muted">{t.context}</span>
+        <div data-reveal className="mt-8 w-full">
+          <TestimonialCarousel items={testimonials.slice(1)} />
         </div>
       </section>
 

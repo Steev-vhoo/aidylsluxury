@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { ChatIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import { media } from "@/lib/media";
+import { SocialLinks } from "@/components/social-links";
 import { PageHero } from "@/components/ui";
 import { faqs, site } from "@/lib/content";
 
@@ -16,7 +17,7 @@ export default function ContactPage() {
   ];
   return (
     <>
-      <PageHero image={media.candleTable} crumb="Home / Contact" title="Get in Touch" intro="Questions about an event, an order or a partnership? We’d love to hear from you." />
+      <PageHero image={media.candleTable} title="Get in Touch" intro="Questions about an event, an order or a partnership? We’d love to hear from you." />
       <section className="container-x relative -mt-10">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((c) => (
@@ -43,7 +44,8 @@ export default function ContactPage() {
             <div className="flex flex-col gap-1.5 rounded-2xl bg-cream p-5 text-sm"><strong className="font-display">Opening hours</strong><span>Monday to Sunday</span><span>8am to 7pm</span></div>
             <div className="flex flex-col gap-1.5 rounded-2xl bg-cream p-5 text-sm">
               <strong className="font-display">Follow us</strong>
-              {site.socials.map((s) => <a key={s.label} href={s.href} target="_blank" rel="noreferrer">{s.label}</a>)}
+              <SocialLinks tone="onLight" size={42} includeWhatsApp={false} />
+              <span className="text-xs text-muted">@aidyls_luxury · @events_by_aidyls_luxury</span>
             </div>
           </div>
         </div>

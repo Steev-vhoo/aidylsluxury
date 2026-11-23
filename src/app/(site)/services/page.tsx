@@ -18,7 +18,7 @@ const rowImages: Record<string, { src: string; alt: string }> = { events: media.
 export default function ServicesPage() {
   return (
     <>
-      <PageHero image={media.garden} crumb="Home / Services" title="Our Services" intro="Planning, styling, rentals, gifting and project management, from one team.">
+      <PageHero image={media.garden} title="Our Services" intro="Planning, styling, rentals, gifting and project management, from one team.">
         <nav aria-label="Jump to service" className="mt-3 flex flex-wrap gap-2">
           {services.map((s) => (
             <a key={s.id} href={`#${s.id}`} className="inline-flex min-h-10 items-center rounded-full border border-gold/50 px-4 text-[13px] text-white no-underline hover:bg-white/10 hover:text-white">{s.title}</a>

@@ -11,7 +11,7 @@ export default async function PortfolioPage() {
   const photos = await getGalleryPhotos();
   return (
     <>
-      <PageHero image={media.goldTable} crumb="Home / Portfolio" title="Our Work" intro="Conferences, launches, weddings and celebrations we’ve planned and styled." />
+      <PageHero image={media.goldTable} title="Our Work" intro="Conferences, launches, weddings and celebrations we’ve planned and styled." />
       <section className="bg-cream py-16">
         <div className="container-x">
           <PortfolioGrid photos={photos} albums={portfolioAlbums} />

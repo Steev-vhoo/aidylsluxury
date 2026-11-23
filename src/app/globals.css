@@ -104,6 +104,10 @@
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 10px)); }
+}
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
@@ -114,6 +118,7 @@
 @utility animate-settle { animation: settle 2.8s var(--ease-lux) both; }
 @utility animate-drift { animation: drift 24s ease-in-out infinite alternate; }
 @utility animate-draw { animation: draw 1.4s var(--ease-lux) both; transform-origin: left; }
+@utility animate-marquee { animation: marquee 40s linear infinite; }
 @utility animate-float { animation: float 4s ease-in-out infinite; }
 
 /* Gold text that catches the light */
@@ -153,6 +158,25 @@
 }
 .js:not(.reveal-off) [data-reveal="curtain"]:not([data-shown]) > * {
   clip-path: inset(0 0 100% 0);
+}
+
+/* Words: a quote that writes itself in, word by word */
+.js:not(.reveal-off) [data-reveal="words"]:not([data-shown]) {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal="words"] .w {
+  display: inline-block;
+  transition:
+    opacity 0.9s var(--ease-lux),
+    transform 0.9s var(--ease-lux),
+    filter 0.9s var(--ease-lux);
+  transition-delay: calc(var(--d, 0ms) + var(--i, 0) * 45ms);
+}
+.js:not(.reveal-off) [data-reveal="words"]:not([data-shown]) .w {
+  opacity: 0;
+  transform: translateY(0.45em);
+  filter: blur(6px);
 }
 
 /* Buttons: a soft sheen sweeps across on hover */
@@ -201,9 +225,11 @@
     transition-delay: 0ms !important;
   }
   [data-reveal],
-  [data-reveal] > * {
+  [data-reveal] > *,
+  [data-reveal="words"] .w {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
+    filter: none !important;
   }
 }

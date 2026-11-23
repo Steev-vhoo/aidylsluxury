@@ -1,6 +1,13 @@
 // Static site copy from the Aidyl's Luxury Website Content Pack (v5, 22 Nov 2026).
 // Items marked DRAFT need Lydia's approval before launch.
 
+export type Social = {
+  platform: "instagram" | "tiktok" | "facebook" | "linkedin" | "threads" | "whatsapp";
+  label: string;
+  href: string;
+  badge?: string;
+};
+
 export const site = {
   name: "Aidyl's Luxury",
   legalName: "Aidyl's Luxury Enterprise",
@@ -12,12 +19,14 @@ export const site = {
   address: "Tantra, Accra, Ghana",
   hours: "Monday to Sunday, 8am to 7pm",
   socials: [
-    { label: "TikTok @aidyls_luxury", href: "https://www.tiktok.com/@aidyls_luxury" },
-    { label: "Instagram @aidyls_luxury", href: "https://www.instagram.com/aidyls_luxury" },
-    { label: "Instagram @events_by_aidyls_luxury", href: "https://www.instagram.com/events_by_aidyls_luxury" },
-    { label: "Facebook: Aidyl's Luxury Enterprise", href: "https://www.facebook.com/" },
-    { label: "LinkedIn: Aidyl's Luxury Events", href: "https://www.linkedin.com/" },
-  ],
+    { platform: "instagram", label: "Instagram @aidyls_luxury", href: "https://www.instagram.com/aidyls_luxury" },
+    { platform: "instagram", label: "Instagram @events_by_aidyls_luxury (events)", href: "https://www.instagram.com/events_by_aidyls_luxury", badge: "Ev" },
+    { platform: "tiktok", label: "TikTok @aidyls_luxury", href: "https://www.tiktok.com/@aidyls_luxury" },
+    { platform: "facebook", label: "Facebook: Aidyl's Luxury Enterprise", href: "https://www.facebook.com/" },
+    { platform: "linkedin", label: "LinkedIn: Aidyl's Luxury Events", href: "https://www.linkedin.com/" },
+    { platform: "threads", label: "Threads @aidyls_luxury", href: "https://www.threads.net/@aidyls_luxury" },
+    { platform: "whatsapp", label: "WhatsApp +233 20 837 6516", href: "https://wa.me/233208376516" },
+  ] as Social[],
 };
 
 export const nav = [

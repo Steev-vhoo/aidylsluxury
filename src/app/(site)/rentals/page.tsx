@@ -12,7 +12,7 @@ export default async function RentalsPage() {
   return (
     <>
       <PageHero
-        image={media.garden} crumb="Home / Services / Rentals"
+        image={media.garden}
         title="Book Rentals"
         intro="Tents, seating, tables, tableware and décor. Choose your items and dates, then pay in full online. Your dates are reserved for you and not offered to other clients."
       />
