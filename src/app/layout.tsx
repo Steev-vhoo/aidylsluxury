@@ -50,7 +50,7 @@ const jsonLd = {
   openingHoursSpecification: [
     { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "08:00", closes: "19:00" },
   ],
-  sameAs: site.socials.filter((s) => ["instagram", "tiktok", "threads"].includes(s.platform)).map((s) => s.href),
+  sameAs: site.socials.filter((s) => s.platform !== "whatsapp").map((s) => s.href),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -23,9 +23,9 @@ export const site = {
     { platform: "instagram", label: "Instagram @aidyls_luxury", href: "https://www.instagram.com/aidyls_luxury" },
     { platform: "instagram", label: "Instagram @events_by_aidyls_luxury (events)", href: "https://www.instagram.com/events_by_aidyls_luxury", badge: "Ev" },
     { platform: "tiktok", label: "TikTok @aidyls_luxury", href: "https://www.tiktok.com/@aidyls_luxury" },
-    { platform: "facebook", label: "Facebook: Aidyl's Luxury Enterprise", href: "https://www.facebook.com/" },
-    { platform: "linkedin", label: "LinkedIn: Aidyl's Luxury Events", href: "https://www.linkedin.com/" },
-    { platform: "threads", label: "Threads @aidyls_luxury", href: "https://www.threads.net/@aidyls_luxury" },
+    { platform: "facebook", label: "Facebook: Aidyl's Luxury Enterprise", href: "https://www.facebook.com/share/1CNKxpkbVg/" },
+    { platform: "linkedin", label: "LinkedIn: Aidyl's Luxury Events", href: "https://www.linkedin.com/company/aidyl-s-luxury/" },
+    { platform: "threads", label: "Threads @aidyls_luxury", href: "https://www.threads.com/@aidyls_luxury" },
     { platform: "whatsapp", label: "WhatsApp +233 20 837 6516", href: "https://wa.me/233208376516" },
   ] as Social[],
 };
