@@ -3,7 +3,6 @@ import { count, desc, eq, gte, sql } from "drizzle-orm";
 import { requireAdmin } from "@/lib/auth";
 import { db, schema } from "@/lib/db";
 import { ghs } from "@/lib/format";
-import { SetupStatus } from "./setup-status";
 import { StatusPill } from "./status-pill";
 
 function dates() {
@@ -81,7 +80,6 @@ export default async function AdminHome() {
           ))}
         </section>
       </div>
-      <SetupStatus />
     </div>
   );
 }
