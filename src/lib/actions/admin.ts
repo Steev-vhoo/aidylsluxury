@@ -6,6 +6,7 @@ import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { createSession, destroySession, passwordMatches, requireAdmin } from "@/lib/auth";
+import { blobEnabled } from "@/lib/blob";
 import { requireDb, schema } from "@/lib/db";
 import { adminConfigProblem } from "@/lib/setup-status";
 import type { Variant } from "@/lib/db/schema";
@@ -112,7 +113,7 @@ export async function deleteProduct(form: FormData) {
   const id = Number(form.get("id"));
   if (!id) return;
   const [p] = await db.delete(schema.products).where(eq(schema.products.id, id)).returning();
-  if (p?.images.length && process.env.BLOB_READ_WRITE_TOKEN) await del(p.images).catch(() => {});
+  if (p?.images.length && blobEnabled()) await del(p.images).catch(() => {});
   updateTag("products");
   redirect("/admin/products");
 }
@@ -142,7 +143,7 @@ export async function deletePhoto(form: FormData) {
   await requireAdmin();
   const db = requireDb();
   const [p] = await db.delete(schema.galleryPhotos).where(eq(schema.galleryPhotos.id, Number(form.get("id")))).returning();
-  if (p && process.env.BLOB_READ_WRITE_TOKEN) await del(p.url).catch(() => {});
+  if (p && blobEnabled()) await del(p.url).catch(() => {});
   updateTag("gallery");
 }
 

@@ -1,4 +1,5 @@
 import "server-only";
+import { blobConnection, blobEnabled } from "./blob";
 
 /** Why admin sign-in can't work yet, or null when it's configured. */
 export function adminConfigProblem(): string | null {
@@ -25,8 +26,10 @@ export function serviceStatus(): Service[] {
     },
     {
       name: "Photo uploads (Vercel Blob)",
-      ok: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
-      detail: process.env.BLOB_READ_WRITE_TOKEN ? "Connected. You can upload product and portfolio photos." : "Not connected. Photo uploads are switched off.",
+      ok: blobEnabled(),
+      detail: blobEnabled()
+        ? `Connected${blobConnection() === "store-id" ? " (store ID)" : ""}. You can upload product and portfolio photos.`
+        : "Not connected. Photo uploads are switched off.",
       fix: "Vercel → Storage → Create → Blob, connect it to this project, then redeploy.",
     },
     {

@@ -1,6 +1,6 @@
 "use client";
 
-import { upload } from "@vercel/blob/client";
+import { uploadPresigned } from "@vercel/blob/client";
 import { useId, useState } from "react";
 import { CloseIcon, UploadIcon } from "./icons";
 
@@ -40,7 +40,7 @@ export function FileUpload({ name, folder, maxFiles = 3, maxMb = 10, accept = "i
       const done: string[] = [];
       for (const f of list) {
         const safe = f.name.replace(/[^a-zA-Z0-9._-]/g, "-");
-        const res = await upload(`${folder}/${safe}`, f, { access: "public", handleUploadUrl: "/api/upload" });
+        const res = await uploadPresigned(`${folder}/${safe}`, f, { access: "public", handleUploadUrl: "/api/upload" });
         done.push(res.url);
       }
       update([...urls, ...done]);
