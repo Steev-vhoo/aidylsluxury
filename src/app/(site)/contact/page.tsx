@@ -34,11 +34,13 @@ export default function ContactPage() {
         <ContactForm />
         <div className="flex flex-col gap-4">
           <div id="map" className="min-h-[340px] flex-1 overflow-hidden rounded-[20px] bg-ph">
-            {process.env.NEXT_PUBLIC_MAP_EMBED_URL ? (
-              <iframe title="Map to Aidyl's Luxury" src={process.env.NEXT_PUBLIC_MAP_EMBED_URL} className="h-full min-h-[340px] w-full border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-            ) : (
-              <div className="ph h-full min-h-[340px]">Map: {site.address} (pin coming soon)</div>
-            )}
+            <iframe
+              title={`Map showing ${site.address}`}
+              src={process.env.NEXT_PUBLIC_MAP_EMBED_URL || `https://www.google.com/maps?q=${encodeURIComponent(site.address)}&z=14&output=embed`}
+              className="h-full min-h-[340px] w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="flex flex-col gap-1.5 rounded-2xl bg-cream p-5 text-sm"><strong className="font-display">Opening hours</strong><span>Monday to Sunday</span><span>8am to 7pm</span></div>

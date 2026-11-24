@@ -9,9 +9,3 @@ import "server-only";
 export function blobEnabled() {
   return Boolean(process.env.BLOB_STORE_ID || process.env.BLOB_READ_WRITE_TOKEN);
 }
-
-export function blobConnection(): "store-id" | "token" | null {
-  if (process.env.BLOB_STORE_ID) return "store-id";
-  if (process.env.BLOB_READ_WRITE_TOKEN) return "token";
-  return null;
-}

@@ -124,7 +124,7 @@
 @utility animate-settle { animation: settle 2.8s var(--ease-lux) both; }
 @utility animate-drift { animation: drift 24s ease-in-out infinite alternate; }
 @utility animate-draw { animation: draw 1.4s var(--ease-lux) both; transform-origin: left; }
-@utility animate-marquee { animation: marquee 40s linear infinite; }
+@utility animate-marquee { animation: marquee 40s linear infinite; will-change: transform; }
 @utility animate-float { animation: float 4s ease-in-out infinite; }
 
 /* Gold text that catches the light */
@@ -134,7 +134,8 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shimmer 7s linear infinite;
+  /* A few slow sweeps, then rest: an endless repaint would keep the main thread busy */
+  animation: shimmer 7s linear 1.2s 3 both;
 }
 
 /* Scroll reveal. Hidden only once JS is confirmed running (see layout inline script). */
