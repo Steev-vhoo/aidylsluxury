@@ -24,17 +24,21 @@ Without `DATABASE_URL` the site runs in preview mode: the shop uses the seed cat
 
 ## Set up on Vercel
 
-1. Import the repository into Vercel.
-2. **Storage → Create → Neon** (adds `DATABASE_URL`) and **Storage → Create → Blob** (adds `BLOB_READ_WRITE_TOKEN`).
-3. Add the other variables from `.env.example`: `NEXT_PUBLIC_SITE_URL`, `PAYSTACK_SECRET_KEY` (test key first), `ADMIN_PASSWORD`, `SESSION_SECRET`, and optionally `RESEND_API_KEY`, `MAIL_FROM`, `OWNER_EMAIL`, `NEXT_PUBLIC_MAP_EMBED_URL`.
-4. Create the tables and load the catalogue (from your machine, with `DATABASE_URL` in `.env.local`):
-   ```bash
-   npm run db:push
-   npm run db:seed
-   ```
-   The SQL is also in `drizzle/0000_init.sql`.
-5. In Paystack → Settings → API Keys & Webhooks, set the webhook URL to `https://<domain>/api/paystack/webhook`.
-6. Redeploy.
+1. **Database:** Vercel → this project → **Storage** → **Connect Database** → **Neon** → create it and connect it to all environments. This adds `DATABASE_URL`.
+2. **Photo storage:** **Storage** → **Create** → **Blob** → connect it to this project. This adds `BLOB_READ_WRITE_TOKEN`.
+3. **Admin access:** **Settings** → **Environment Variables**, add:
+   - `ADMIN_PASSWORD`: at least 12 characters (this is the password for `/admin`)
+   - `SESSION_SECRET`: a random string of 32+ characters, e.g. the output of `openssl rand -base64 48` or a password manager's generator
+   - `NEXT_PUBLIC_SITE_URL`: `https://www.aidylsluxury.com`
+4. **Redeploy** (Deployments → ⋯ → Redeploy). Every build runs `scripts/setup-db.ts` first, which:
+   - applies the SQL migrations in `drizzle/` to Neon
+   - loads the starting products and rental items **only if those tables are empty** (so nothing Lydia deletes comes back)
+
+   The build log shows `[setup-db] Migrations applied.` and `Loaded 8 starting products.` on the first run.
+5. Open `https://www.aidylsluxury.com/admin`, sign in, and check the **Setup checklist** at the bottom of the overview.
+6. Later: add `PAYSTACK_SECRET_KEY` (test key first) and set the Paystack webhook to `https://www.aidylsluxury.com/api/paystack/webhook`; add `RESEND_API_KEY` and `MAIL_FROM` for email notifications.
+
+Changing the admin password: update `ADMIN_PASSWORD` in Vercel and redeploy. Changing `SESSION_SECRET` signs everyone out.
 
 ## Scripts
 
@@ -42,9 +46,9 @@ Without `DATABASE_URL` the site runs in preview mode: the shop uses the seed cat
 |---|---|
 | `npm run dev` / `build` / `start` | Next.js |
 | `npm run lint` / `typecheck` | ESLint / TypeScript |
-| `npm run db:push` | Create or update tables in Neon |
-| `npm run db:generate` | Write a SQL migration to `drizzle/` |
-| `npm run db:seed` | Add the content-pack products and rental items (safe to re-run) |
+| `npm run db:setup` | Apply migrations and load the starting catalogue into empty tables (runs automatically before every build) |
+| `npm run db:generate` | After changing `src/lib/db/schema.ts`, write the next SQL migration to `drizzle/` and commit it |
+| `npm run db:seed` | Add any missing content-pack products and rental items by name (manual use only) |
 | `npm run db:studio` | Browse the database |
 
 ## Where things live

@@ -5,6 +5,7 @@ import { BrandLogo } from "@/components/brand-logo";
 import { logout } from "@/lib/actions/admin";
 import { requireAdmin } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { SetupStatus } from "./setup-status";
 
 // Admin pages read the session cookie, so they render on the server per request.
 export const instant = false;
@@ -25,9 +26,12 @@ async function Gate({ children }: { children: React.ReactNode }) {
   return (
     <>
       {!db && (
-        <div className="rounded-2xl border border-amber-300 bg-amber-50 p-6 text-amber-900">
-          <h1 className="mb-2 text-xl font-bold">Connect the database</h1>
-          <p className="text-sm">Set <code>DATABASE_URL</code> (Neon) in your environment, then run <code>npm run db:push</code> and <code>npm run db:seed</code>. See the README.</p>
+        <div className="mb-6 flex flex-col gap-4">
+          <div className="rounded-2xl border border-amber-300 bg-amber-50 p-6 text-amber-900">
+            <h1 className="mb-2 text-xl font-bold">Connect the database</h1>
+            <p className="text-sm">In Vercel, open this project → Storage → Connect Database → Neon, then redeploy. The tables and starting catalogue are created automatically on the next deploy.</p>
+          </div>
+          <SetupStatus />
         </div>
       )}
       {children}

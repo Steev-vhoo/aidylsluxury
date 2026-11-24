@@ -1,4 +1,4 @@
-CREATE TABLE "gallery_photos" (
+CREATE TABLE IF NOT EXISTS "gallery_photos" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"url" text NOT NULL,
 	"caption" text DEFAULT '' NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE "gallery_photos" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "inquiries" (
+CREATE TABLE IF NOT EXISTS "inquiries" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"type" text NOT NULL,
 	"name" text NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE "inquiries" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "orders" (
+CREATE TABLE IF NOT EXISTS "orders" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"reference" text NOT NULL,
 	"kind" text DEFAULT 'shop' NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE "orders" (
 	CONSTRAINT "orders_reference_unique" UNIQUE("reference")
 );
 --> statement-breakpoint
-CREATE TABLE "products" (
+CREATE TABLE IF NOT EXISTS "products" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"slug" text NOT NULL,
 	"name" text NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE "products" (
 	CONSTRAINT "products_slug_unique" UNIQUE("slug")
 );
 --> statement-breakpoint
-CREATE TABLE "rental_items" (
+CREATE TABLE IF NOT EXISTS "rental_items" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"group" text NOT NULL,

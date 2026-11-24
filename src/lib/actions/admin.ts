@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { createSession, destroySession, passwordMatches, requireAdmin } from "@/lib/auth";
 import { requireDb, schema } from "@/lib/db";
+import { adminConfigProblem } from "@/lib/setup-status";
 import type { Variant } from "@/lib/db/schema";
 import { slugify } from "@/lib/format";
 
@@ -16,6 +17,8 @@ export type AdminState = { ok: boolean; message: string } | null;
 const attempts = new Map<string, { n: number; at: number }>();
 
 export async function login(_: AdminState, form: FormData): Promise<AdminState> {
+  const problem = adminConfigProblem();
+  if (problem) return { ok: false, message: problem };
   const key = "admin";
   const a = attempts.get(key);
   if (a && a.n >= 5 && Date.now() - a.at < 10 * 60_000) return { ok: false, message: "Too many attempts. Try again in 10 minutes." };
