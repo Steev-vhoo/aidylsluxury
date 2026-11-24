@@ -1,6 +1,7 @@
 "use server";
 
 import { z } from "zod";
+import { blobEnabled } from "@/lib/blob";
 import { db, schema } from "@/lib/db";
 import { ownerEmail, sendMail, summarise } from "@/lib/notify";
 
@@ -121,7 +122,7 @@ export async function submitBalloonBooking(_: FormState, form: FormData): Promis
   const parsed = balloonSchema.safeParse(raw);
   if (!parsed.success) return { ok: false, message: "Please check the highlighted fields.", errors: fieldErrors(parsed.error) };
   const files = attachments(form.get("attachments"));
-  if (files.length === 0 && process.env.BLOB_READ_WRITE_TOKEN) {
+  if (files.length === 0 && blobEnabled()) {
     return { ok: false, message: "Please upload an inspiration picture.", errors: { attachments: "Upload at least one inspiration picture" } };
   }
   const { name, email: em, phone, terms, strike, ...rest } = parsed.data;

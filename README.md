@@ -10,7 +10,7 @@ Next.js 16 (App Router, Cache Components) · Tailwind CSS 4 · Neon Postgres (Dr
 
 **Payments:** shop items and rentals are paid in full through Paystack (Mobile Money and card, GHS). Orders are marked paid only after Paystack confirms the exact amount, either on the return page or through the webhook. Rentals with any unpriced item, or any checkout while Paystack isn't configured, come in as a request instead of a payment.
 
-**Uploads:** browsers upload directly to Vercel Blob (`/api/upload` issues short-lived tokens), so files never pass through the 4.5 MB function limit. Visitors can upload inspiration files (3 files, 10 MB each); the admin can upload product and portfolio photos.
+**Uploads:** browsers upload directly to Vercel Blob (`/api/upload` issues short-lived presigned URLs), so files never pass through the 4.5 MB function limit. Visitors can upload inspiration files (3 files, 10 MB each); the admin can upload product and portfolio photos.
 
 ## Run locally
 
@@ -25,7 +25,7 @@ Without `DATABASE_URL` the site runs in preview mode: the shop uses the seed cat
 ## Set up on Vercel
 
 1. **Database:** Vercel → this project → **Storage** → **Connect Database** → **Neon** → create it and connect it to all environments. This adds `DATABASE_URL`.
-2. **Photo storage:** **Storage** → **Create** → **Blob** → connect it to this project. This adds `BLOB_READ_WRITE_TOKEN`.
+2. **Photo storage:** **Storage** → **Create** → **Blob** (choose **Public** access) → connect it to this project. Newer stores add `BLOB_STORE_ID` and authenticate with Vercel's built-in OIDC token; older ones add `BLOB_READ_WRITE_TOKEN`. Either works.
 3. **Admin access:** **Settings** → **Environment Variables**, add:
    - `ADMIN_PASSWORD`: at least 12 characters (this is the password for `/admin`)
    - `SESSION_SECRET`: a random string of 32+ characters, e.g. the output of `openssl rand -base64 48` or a password manager's generator
